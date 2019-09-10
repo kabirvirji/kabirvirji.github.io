@@ -1,16 +1,15 @@
 @import "rouge-base16-dark";
 @import "default_colors";
 
-$body-background: $cod-grey !default;
-$body-foreground: $gallery !default;
-$header: $conifer !default;
+$body-background: $gallery !default;
+$body-foreground: $brown !default;
+$header: $red !default;
 $blockquote-color: $silver-chalice !default;
 $blockquote-border: $dove-grey !default;
 
 body {
   margin: 0;
   padding: 0;
-  background: $body-background url("../images/bkg.png") 0 0;
   color: $body-foreground;
   font-size: 16px;
   line-height: 1.5;
@@ -45,9 +44,9 @@ li {
 */
 
 header {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(172, 173, 175, 0.15);
   width: 100%;
-  border-bottom: 1px dashed $conifer; //header;
+  border-bottom: 1px dashed $red; //header;
   padding: 20px 0;
   margin: 0 0 40px 0;
 }
@@ -67,8 +66,8 @@ header h1 {
 }
 
 header h1:before {
-  content: "./ ";
-  font-size: 24px;
+  content: "> ";
+  font-size: 35px;
 }
 
 header h2 {
@@ -149,11 +148,11 @@ blockquote {
 }
 
 pre {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(172, 173, 175, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 10px;
   font-size: 16px;
-  color: #b5e853;
+  color: white;
   border-radius: 2px;
   word-wrap: normal;
   overflow: auto;
@@ -161,7 +160,7 @@ pre {
 }
 
 code.highlighter-rouge {
-  background: rgba(0,0,0,0.9);
+  background: rgba(246, 248, 250, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 0px 3px;
   margin: 0px -3px;
@@ -176,7 +175,7 @@ table {
 
 th {
   text-align: left;
-  border-bottom: 1px dashed #b5e853;
+  border-bottom: 1px dashed #E63946;
   padding: 5px 10px;
 }
 
@@ -187,8 +186,8 @@ td {
 hr {
   height: 0;
   border: 0;
-  border-bottom: 1px dashed #b5e853;
-  color: #b5e853;
+  border-bottom: 1px dashed #E63946;
+  color: #E63946;
 }
 
 /* Buttons
@@ -233,7 +232,7 @@ hr {
 */
 
 a {
-  color: #63c0f5;
+  color: #629E96;
   text-shadow: 0 0 5px rgba(104, 182, 255, 0.5);
 }
 

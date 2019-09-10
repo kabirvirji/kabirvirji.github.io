@@ -13,8 +13,8 @@
 
     <header>
       <div class="container">
-        <h1>{{ site.title | default: site.github.repository_name }}</h1>
-        <h2>{{ site.description | default: site.github.project_tagline }}</h2>
+        <h1 class="website-title" style="color: #E63946">{{ site.title | default: site.github.repository_name }}</h1>
+        <h2 class="website-description" style="color: #3A2D2D">{{ site.description | default: site.github.project_tagline }}</h2>
 
         <section id="downloads">
           {% if site.show_downloads %}
