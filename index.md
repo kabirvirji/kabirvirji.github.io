@@ -28,10 +28,10 @@ const basicInfo = {
   "major": "computer science",
   "year": "3",
   "relevant_coursework": ["algorithms and data structures", "databases", "computer ethics", "operating systems", "software design", "computer organization", "linear algebra", "calculus", "statistics"],
-  "hobbies": "music, food, tv, travel"
+  "hobbies": "music, food, televison, travel"
 }
 ```
 
-```
+<!-- ```
 📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿📀💿
-```
+``` -->
