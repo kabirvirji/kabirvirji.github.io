@@ -14,11 +14,11 @@ These weren't my first internships, however I feel like I learned a lot from the
 
 ## Relevant Links
 
-[Resume](./another-page.html)
+[Resume](./assets/resumes/resume1.pdf)
 [Email](mailto:kabirvirji@gmail.com)
 
 [Github](https://github.com/kabirvirji)
-[LinkedIn](./another-page.html)
+[LinkedIn](https://linkedin.com/in/kabirvirji)
 
 ## Basic Info
 
