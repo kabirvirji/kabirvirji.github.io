@@ -6,11 +6,11 @@ layout: default
 
 <!-- _updated 09/10/2019_ -->
 
-Hello, my name is Kabir and I am a third year computer science student at the [University of Toronto](https://web.cs.toronto.edu/). 
+Hello, my name is Kabir, and I am a third year computer science student at the [University of Toronto](https://web.cs.toronto.edu/). 
 
 Last summer I worked as a full-stack software engineering intern at [Rakuten](https://www.rakuten.com/) in Tokyo, Japan. After I finished my internship at Rakuten, I completed another software engineering internship at [Flagship](https://flagship.cc/en), also in Tokyo. 
 
-These weren't my first internships, however I feel like I learned a lot from them. Now I am back at university, and seeking positions for summer 2020.
+These weren't my first internships, however I feel like I learned a lot from them both professionally and personally. Now I am back at university, and seeking positions for summer 2020.
 
 ## Relevant Links
 
