@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      Color Therapy
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Color Therapy" />
+<meta name="author" content="Riccardo Graziosi" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Seeking newgrad software engineering positions (May 2021)" />
+<meta property="og:description" content="Seeking newgrad software engineering positions (May 2021)" />
+<link rel="canonical" href="http://localhost:4000/colortherapydetails" />
+<meta property="og:url" content="http://localhost:4000/colortherapydetails" />
+<meta property="og:site_name" content="Kabir Virji" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/colortherapydetails","headline":"Color Therapy","author":{"@type":"Person","name":"Riccardo Graziosi"},"description":"Seeking newgrad software engineering positions (May 2021)","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Kabir Virji" />
+
+  <link rel="shortcut icon" type="image/x-icon" href="/" />
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/main.css" />
+</head><body a="light">
+    <main class="page-content" aria-label="Content">
+        <div class="w">
+            <a href="http://localhost:4000">..</a>
+<h1>Color Therapy</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Color Therapy was born out of a love for playlist applications. We generate accurate playlists based on emotions and colors, since good music is always a captivating mood-booster.</p>
+
+<h2 id="using-spotifys-api">Using Spotify’s API</h2>
+<p>We decided to use Spotify’s <a href="https://developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/">Get Recommendations Based on Seeds</a> endpoint to search for tracks. Seeds are a combination of up to 5 artists, tracks, or genres. We use the user’s top artists as Seeds, since artists are highly indicative of music taste, and artists can span multiple genres.</p>
+
+<p>The recommendations endpoint also takes “tuneable track attributes” as query parameters. This means we can search with filters such as acousticness, danceability, and tempo. The two most interesting track attributes are “energy” and “valence”. Energy in this context is measured by perceptual intensity, which includes dynamic range, perceived loudness, timbre, onset rate, and general entropy. Valence is measured by musical positiveness; tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).</p>
+
+<p>With this endpoint in mind, we devised a way to calculate energy and valence using colors.</p>
+
+<h2 id="understanding-valence-and-color">Understanding valence and color</h2>
+<p>With Color Therapy, the user will be picking colors. However, colors themselves are very subjective - they have no meaning without context. There are some generalizations (red is angry, blue is sad, etc), however one of our goals was to make the generated playlists personal.</p>
+
+<p><img src="assets/quizGif.gif" alt="quizGif" /></p>
+
+<p>The purpose of the color quiz is to make sense of how the user sees color. The user is asked to rank various colors from sad to happy, internally stored as a value between <code class="highlighter-rouge">0.0</code> and <code class="highlighter-rouge">1.0</code>. This value will be the <strong>individual</strong> valence for each “base color” in the quiz. The base colors are as follows:</p>
+<ul>
+  <li><code class="highlighter-rouge">#FF0000 red</code></li>
+  <li><code class="highlighter-rouge">#0000FF blue</code></li>
+  <li><code class="highlighter-rouge">#FFFF00 yellow</code></li>
+  <li><code class="highlighter-rouge">#00FF00 green</code></li>
+  <li><code class="highlighter-rouge">#FFFFFF white</code></li>
+  <li><code class="highlighter-rouge">#000000 black</code></li>
+</ul>
+
+<p>These base colors were deliberately chosen to cover the RGB color model, primary colors, and black/white. The intention here is to have the widest color range possible.</p>
+
+<p>Assigning valence values to base colors gives our colors context, so now we can calculate the <strong>closest</strong> base color to any random color.</p>
+
+<blockquote>
+  <p>Obtaining the previously mentioned attribute “energy” is straightforward. The first slider of the quiz asks the user about their energy level, and we pass that value directly into Spotify’s query parameters.</p>
+</blockquote>
+
+<h2 id="calculating-color-difference-and-target-valence">Calculating color difference and target valence</h2>
+
+<p>We started by calculating the <a href="https://en.wikipedia.org/wiki/Color_difference">color difference</a> between one chosen color and one base color. Since we are using RGB values, we calculated the <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a> between the two colors to find their difference. However, after doing some research we realized that Euclidean distance may not produce the most accurate results for our use case since RGB is not “perceptually uniform”. In other words, using Euclidean distance makes sense for a screen, not for our eyes. We want to relate a chosen color to its <strong>perceptually closest base color</strong>. For this, we need to use <a href="http://www.colorwiki.com/wiki/Delta_E:_The_Color_Difference">Delta E</a>, which calculates <strong>perceived</strong> color difference.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Delta E</th>
+      <th>Perception</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">&lt;= 1.0</td>
+      <td>Not perceptible by human eyes.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1 - 2</td>
+      <td>Perceptible through close observation.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2 - 10</td>
+      <td>Perceptible at a glance.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">11 - 49</td>
+      <td>Colors are more similar than opposite</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">100</td>
+      <td>Colors are exact opposite</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>source: http://zschuessler.github.io/DeltaE/learn/</p>
+</blockquote>
+
+<p>We extended this idea of color difference to multiple colors, and were able to calculate an average/target valence value from a collection of user picked colors. The following is an example:</p>
+
+<p><img src="assets/valenceExample.png" alt="valenceExample" /></p>
+
+<p>Remember that each “base color” has its own valence value (from the color quiz). The closest “base color” for the user picked colors <code class="highlighter-rouge">u1</code>, <code class="highlighter-rouge">u2</code>, <code class="highlighter-rouge">u4</code>, and <code class="highlighter-rouge">u5</code> is <code class="highlighter-rouge">b3</code>, yellow. However, the closest “base color” for <code class="highlighter-rouge">u3</code> is <code class="highlighter-rouge">b1</code>, red. This is because the <strong>delta e</strong> of <code class="highlighter-rouge">u3</code> and <code class="highlighter-rouge">b1</code> was the smaller compared to <code class="highlighter-rouge">b3</code>, and compared to the rest of the base colors. The distinction here is important since we care about <strong>perceived</strong> color difference.</p>
+
+<p>For the above example we can calculate valence like so:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>targetValence = (getValence(b3) * 4 + getValence(b1)) / 5
+</code></pre></div></div>
+
+<p>A more general formula for valence would look like this:</p>
+
+<p><img src="https://render.githubusercontent.com/render/math?math=targetValence%20%3D%20%5Cfrac%7B1%7D%7Bn%7D%20*%20%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20getValence(baseColor_i)" alt="targetValence = \frac{1}{n} * \sum_{i=1}^{n} getValence(baseColor_i)" /></p>
+
+<p>We’ve successfully calculated valence! This value represents the users emotions, and picked colors. Now that we have valence, energy, and Seed artists, we can make a <code class="highlighter-rouge">GET</code> request to Spotify’s endpoint. The request will return personalized tracks, which we use to create a new playlist.</p>
+
+<p>One highlight is the playlist image art will actually be the colors the user selected.</p>
+
+<p><img src="assets/playlistImg.jpeg" alt="playlistImg" /></p>
+
+<p>Accomplishing this involved creating an invisible <code class="highlighter-rouge">HTML</code> canvas element, and individually coloring its pixels with RGB values from the chosen colors. Then, converting the image to a <code class="highlighter-rouge">base64</code> encoded string to make a <code class="highlighter-rouge">PUT</code> request to Spotify. <a href="https://github.com/kabirvirji/colortherapy/blob/master/src/components/ColorPicker/ColorPicker.js#L81">There’s more details in the code.</a></p>
+
+<p>Additionally, the UI for Color Therapy is reminiscent of the <a href="https://github.com/kabirvirji/colortherapy/blob/master/src/images/oldfriv.png">old Friv Games</a>, but with <a href="https://github.com/kabirvirji/colortherapy/blob/master/src/components/ColorPicker/ColorPicker.js#L31">randomly generated colors</a> and <a href="https://github.com/kabirvirji/colortherapy/blob/master/src/components/ColorPicker/ColorPicker.js#L69">infinite scrolling</a> 😊</p>
+
+<h2 id="final-thoughts">Final thoughts</h2>
+
+<p>Moving forward, it would be interesting for the quiz to include more questions, and for the user to pick more colors. This would increase valence accuracy, resulting in more accurate playlists. Additionally, if we added a backend we could generate unique data about the relationships between music, color, and valence.</p>
+
+<p>Despite the relationship between music and color being subjective, we hope people can connect with the playlists generated! Thank you for reading, if you enjoyed <a href="https://colortherapy.io/">Color Therapy</a> please star our repo and share with your friends!</p>
+
+
+
+        </div>
+    </main>
+
+    
+    </body>
+</html>

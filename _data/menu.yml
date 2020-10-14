@@ -1,0 +1,65 @@
+# For documentation on this file, see:
+# https://github.com/riggraz/no-style-please#customize-the-menu
+
+entries:
+  - title: info
+    url: false
+    entries:
+      - title: senior computer science student @ university of toronto
+        url: false
+      - title: github
+        url: https://github.com/kabirvirji
+      - title: linkedin
+        url: https://linkedin.com/in/kabirvirji
+      - title: resume
+        url: /assets/resume-10-2020.pdf
+      - title: email
+        url: mailto:kabirvirji@gmail.com
+
+  - title: projects
+    url: false
+    entries:
+      - title: color therapy
+        url: https://github.com/kabirvirji/colortherapy
+        entries:
+          - title: using colors and emotions to generate playlists
+            url: false
+          - title: demo
+            url: colortherapy
+          - title: details
+            url: colortherapydetails
+      - title: spoticlean
+        url: https://github.com/kabirvirji/spoticlean
+        entries:
+          - title: cli app to mass delete playlists using regex
+            url: false
+          - title: demo
+            url: spoticlean
+      - title: tokyo toilets
+        url: https://github.com/kabirvirji/tokyotoilets
+        entries:
+          - title: crowd-sourcing toilet accessibility
+            url: false
+          - title: demo
+            url: tokyotoilets
+      - title: singlespotify
+        url: https://github.com/kabirvirji/singlespotify
+        entries:
+          - title: cli app to create a playlist based off one artist
+            url: false
+          - title: demo
+            url: singlespotify
+      - title: spotifork
+        url: https://github.com/kabirvirji/spotifork
+        entries:
+          - title: cli app to fork a spotify playlist
+            url: false
+          - title: demo
+            url: spotifork
+
+  # - title: thoughts
+  #   post_list: true
+  #   url: false
+  #   entries: false
+  
+
