@@ -5,7 +5,7 @@ entries:
   - title: info
     url: false
     entries:
-      - title: senior computer science student @ university of toronto
+      - title: senior computer science student @ University of Toronto
         url: false
       - title: github
         url: https://github.com/kabirvirji
@@ -57,9 +57,16 @@ entries:
           - title: demo
             url: spotifork
 
+  - title: notcomfy
+    url: https://soundcloud.com/notcomfy/popular-tracks
+
   # - title: thoughts
   #   post_list: true
   #   url: false
   #   entries: false
+
+  # Tokyo blog post 
+  # Blog post about creation of the printing press, how they were scared of the tech, my digital humanaties course, and how it relates to now being scared ppl always gonna be scared and this is how technology develops
+
   
 

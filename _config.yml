@@ -3,7 +3,7 @@ author: Riccardo Graziosi # name of site's author
 email: riccardo.graziosi97@gmail.com # email of site's author
 url: https://kabirvirji.com/ # root address of the site
 description: > # description of the site (multiple lines allowed)
-  Seeking newgrad software engineering positions (May 2021)
+  Seeking New Grad software engineering positions (May 2021)
 
 permalink: /:slug.html
 

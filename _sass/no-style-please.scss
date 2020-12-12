@@ -19,9 +19,18 @@ body[a="dark"] { @include dark-appearance; }
 // bg color is also needed in html in order to
 // block body's background propagation
 // see: https://stackoverflow.com/a/61265706
-html, body { background-color: white; }
+html, body { 
+  background-color: white; 
+  animation: changeColor ease;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+  animation-fill-mode: both;
+}
 
-html { height: 100%; }
+html { 
+  height: 100%; 
+
+}
 
 body {
   color: black;
@@ -87,3 +96,39 @@ img {
   display: block;
   margin: 0 auto;
 }
+
+@keyframes changeColor {
+  0% {
+    background-color: #f3e8ee;
+  }
+
+  25% {
+    background-color: #f7f7f2;
+  }
+
+  50% {
+    background-color: #ffe8d4;
+  }
+
+  100% {
+    background-color: #f3e8ee;
+  }
+}
+
+// @keyframes changeColor {
+//   0% {
+//     background-color: #faedcd;
+//   }
+
+//   25% {
+//     background-color: #fefae0;
+//   }
+
+//   50% {
+//     background-color: #e9edc9;
+//   }
+
+//   75% {
+//     background-color: #ccd5ae;
+//   }
+// }

@@ -1,12 +1,21 @@
 <ul>
   {% for item in include.collection %}
-    <li>
-    {% if item.url != false %}
-      <a href="{{ item.url }}">{{ item.title }}</a>
+
+    {% if item.title == "notcomfy"%}
+        {% if item.url != false %}
+          <a href="{{ item.url }}" class="notcomfy" style="color: #ffe8d4;">{{ item.title }}</a>
+        {% else %}
+          {{ item.title }}
+        {% endif %}
     {% else %}
-      {{ item.title }}
+      <li>
+        {% if item.url != false %}
+          <a href="{{ item.url }}">{{ item.title }}</a>
+        {% else %}
+          {{ item.title }}
+        {% endif %}
+      </li>
     {% endif %}
-    </li>
 
     {% if item.post_list == true %}
       {% include post_list.html %}
