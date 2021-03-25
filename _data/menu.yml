@@ -9,10 +9,10 @@ entries:
         url: false
       - title: github
         url: https://github.com/kabirvirji
-      - title: linkedin
-        url: https://linkedin.com/in/kabirvirji
       - title: resume
         url: /assets/resume-10-2020.pdf
+      - title: linkedin
+        url: https://linkedin.com/in/kabirvirji
       - title: email
         url: mailto:kabirvirji@gmail.com
 
@@ -38,7 +38,7 @@ entries:
       - title: tokyo toilets
         url: https://github.com/kabirvirji/tokyotoilets
         entries:
-          - title: crowd-sourcing toilet accessibility
+          - title: crowd-sourcing toilet accessibility in Tokyo
             url: false
           - title: demo
             url: tokyotoilets
@@ -56,6 +56,9 @@ entries:
             url: false
           - title: demo
             url: spotifork
+
+  - title: stream
+    url: https://www.twitch.tv/notcomfycodes
 
   - title: notcomfy
     url: https://soundcloud.com/notcomfy
